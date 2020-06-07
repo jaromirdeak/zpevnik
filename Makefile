@@ -8,8 +8,8 @@ zpevnik.pdf: zpevnik.tex $(TITLEFILE) $(AUTHORFILE)
 	latex $<
 	pdflatex $<
 
-$(TITLEFILE) $(AUTHORFILE)&: nowtex
-	python3 ./akordy/maketoc.py nowtex $(TITLEFILE) $(AUTHORFILE)
+$(TITLEFILE) $(AUTHORFILE)&: pisnicky
+	python3 ./akordy/maketoc.py pisnicky $(TITLEFILE) $(AUTHORFILE)
 
-zpevnik.tex: nowtex
-	python3 ./akordy/merge.py nowtex $@
+zpevnik.tex: pisnicky
+	python3 ./akordy/merge.py pisnicky $@
