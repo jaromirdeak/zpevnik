@@ -392,19 +392,19 @@ def songToFile(fnIn, outfile):
   outfile.write(song.outTex())
 
 if __name__ == '__main__':
-  if len(sys.argv) == 2:
+  if len(sys.argv) == 0:
     fout = open('zpevnik.tex', 'w', encoding='utf8')
     fout.write(open('init.tex', encoding='utf8').read())
   else:
     fout = None
   for fn in sorted(os.listdir(sys.argv[1]), key=locale.strxfrm):
     try:
-      if '.txt' not in fn: continue
+      if '.txt' not in fn:
+        continue
       if fout:
         songToFile(os.path.join(sys.argv[1], fn), fout)
       else:
-        with open(os.path.join(sys.argv[2], fn.replace('.txt', '.tex')), 'w', encoding='utf8') as onefile:
-          songToFile(os.path.join(sys.argv[1], fn), onefile)
+        with open(os.path.join(sys.argv[1], fn.replace('.txt', '.tex')), 'w', encoding='utf8') as onefile: songToFile(os.path.join(sys.argv[1], fn), onefile)
     except:
       print(fn)
       raise
